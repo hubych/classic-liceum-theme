@@ -1,0 +1,15 @@
+/*
+Theme Name:   Astra Child - School
+Theme URI:    https://example.com
+Description:  Дочірня тема Astra для сайту гімназії. Кастомний header/footer кодом, без плагінів-білдерів.
+Author:       Oleh
+Template:     astra
+Version:      1.0.0
+Text Domain:  astra-child
+*/
+
+/*
+Усі реальні стилі підключаються окремим файлом assets/css/custom.css
+(див. functions.php) — так зручніше редагувати та кешувати.
+Цей файл лишаємо мінімальним, він потрібен WordPress лише для розпізнавання теми.
+*/
