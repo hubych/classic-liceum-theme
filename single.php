@@ -39,7 +39,7 @@ $icon_calendar = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" str
 					<h1 class="single-post__title"><?php the_title(); ?></h1>
 					<div class="single-post__meta">
 						<?php echo $icon_calendar; // phpcs:ignore -- статичний довірений SVG ?>
-						<span><?php echo esc_html( get_the_date( 'j F Y' ) ); ?></span>
+						<span><?php echo esc_html( school_date_uk() ); ?></span>
 					</div>
 				</header>
 
@@ -90,7 +90,7 @@ $icon_calendar = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" str
 								<?php endif; ?>
 							</div>
 							<div class="news-card__body">
-								<span class="news-card__date"><?php echo esc_html( get_the_date( 'j F Y' ) ); ?></span>
+								<span class="news-card__date"><?php echo esc_html( school_date_uk() ); ?></span>
 								<h3 class="news-card__title"><?php the_title(); ?></h3>
 								<?php if ( get_the_excerpt() ) : ?>
 									<p class="news-card__excerpt"><?php echo esc_html( wp_trim_words( get_the_excerpt(), 18 ) ); ?></p>

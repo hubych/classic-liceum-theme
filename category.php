@@ -37,7 +37,7 @@ get_header();
 								<?php endif; ?>
 							</div>
 							<div class="news-card__body">
-								<span class="news-card__date"><?php echo esc_html( get_the_date( 'd.m.Y' ) ); ?></span>
+								<span class="news-card__date"><?php echo esc_html( school_date_uk() ); ?></span>
 								<h3 class="news-card__title"><?php the_title(); ?></h3>
 							</div>
 						</a>

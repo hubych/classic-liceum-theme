@@ -121,3 +121,44 @@ add_action( 'widgets_init', function () {
 		'after_title'   => '</h3>',
 	) );
 } );
+
+/**
+ * Дата українською з назвою місяця в родовому відмінку — напр. "15 березня 2025".
+ *
+ * Працює НЕЗАЛЕЖНО від мови сайту: день/місяць/рік беремо як числа
+ * (вони не залежать від локалі), а назву місяця підставляємо самі.
+ * Використання в шаблонах: echo esc_html( school_date_uk() );
+ *
+ * @param int|WP_Post|null $post      Пост (за замовчуванням — поточний у циклі).
+ * @param bool             $with_year Чи додавати рік (за замовчуванням — так).
+ * @return string
+ */
+function school_date_uk( $post = null, $with_year = true ) {
+	$months = array(
+		1  => 'січня',
+		2  => 'лютого',
+		3  => 'березня',
+		4  => 'квітня',
+		5  => 'травня',
+		6  => 'червня',
+		7  => 'липня',
+		8  => 'серпня',
+		9  => 'вересня',
+		10 => 'жовтня',
+		11 => 'листопада',
+		12 => 'грудня',
+	);
+
+	$day   = get_the_date( 'j', $post );
+	$month = (int) get_the_date( 'n', $post );
+	$year  = get_the_date( 'Y', $post );
+
+	// Запасний варіант, якщо дату з якоїсь причини не вдалося прочитати.
+	if ( ! isset( $months[ $month ] ) ) {
+		return get_the_date( '', $post );
+	}
+
+	return $with_year
+		? sprintf( '%s %s %s', $day, $months[ $month ], $year )
+		: sprintf( '%s %s', $day, $months[ $month ] );
+}
