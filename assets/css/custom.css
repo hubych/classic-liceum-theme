@@ -925,6 +925,197 @@
 }
 
 /* ==========================================================================
+   Окремий пост (single.php)
+   ========================================================================== */
+
+.single-post__inner {
+	max-width: 1140px;
+	margin: 0 auto;
+	padding: 40px var(--container-padding) 56px;
+}
+
+.single-post__back {
+	display: inline-flex;
+	align-items: center;
+	gap: 8px;
+	font-family: var(--font-body);
+	font-weight: 500;
+	font-size: 17px;
+	color: var(--color-text);
+	text-decoration: none;
+	margin-bottom: 36px;
+	transition: color 0.15s ease;
+}
+
+.single-post__back:hover {
+	color: var(--color-primary);
+}
+
+.single-post__back svg {
+	width: 22px;
+	height: 22px;
+}
+
+.single-post__header {
+	margin-bottom: 28px;
+}
+
+.single-post__title {
+	font-family: var(--font-heading);
+	font-weight: 800;
+	font-size: clamp(30px, 4.5vw, 48px);
+	line-height: 1.15;
+	color: var(--color-text);
+	margin: 0 0 18px;
+}
+
+.single-post__meta {
+	display: inline-flex;
+	align-items: center;
+	gap: 8px;
+	font-family: var(--font-body);
+	font-weight: 500;
+	font-size: 16px;
+	color: var(--color-text-secondary);
+}
+
+.single-post__meta svg {
+	width: 20px;
+	height: 20px;
+}
+
+.single-post__thumbnail {
+	margin: 0 0 36px;
+	border-radius: 24px;
+	overflow: hidden;
+	border: 1px solid #EAEAEA;
+}
+
+.single-post__thumbnail img {
+	display: block;
+	width: 100%;
+	height: auto;
+	max-height: 520px;
+	object-fit: cover;
+}
+
+/* Типографіка тіла статті */
+.single-post__content {
+	font-family: var(--font-body);
+	font-weight: 400;
+	font-size: 20px;
+	line-height: 1.8;
+	color: var(--color-text);
+}
+
+.single-post__content > * {
+	margin: 0 0 1.2em;
+}
+
+.single-post__content > *:last-child {
+	margin-bottom: 0;
+}
+
+.single-post__content h2,
+.single-post__content h3 {
+	font-family: var(--font-heading);
+	font-weight: 700;
+	line-height: 1.25;
+	color: var(--color-text);
+	margin-top: 1.6em;
+}
+
+.single-post__content h2 {
+	font-size: 32px;
+}
+
+.single-post__content h3 {
+	font-size: 26px;
+}
+
+.single-post__content img {
+	max-width: 100%;
+	height: auto;
+	border-radius: 24px;
+	border: 1px solid #EAEAEA;
+}
+
+.single-post__content a {
+	color: var(--color-primary);
+	text-decoration: underline;
+}
+
+.single-post__content ul,
+.single-post__content ol {
+	padding-left: 1.4em;
+}
+
+.single-post__content li {
+	margin-bottom: 0.5em;
+}
+
+.single-post__content blockquote {
+	margin-left: 0;
+	margin-right: 0;
+	padding-left: 24px;
+	border-left: 3px solid var(--color-primary);
+	color: var(--color-text-secondary);
+	font-style: italic;
+}
+
+/* Інші новини */
+.single-post__related {
+	max-width: 1140px;
+	margin: 0 auto;
+	padding: 24px var(--container-padding) 72px;
+}
+
+.single-post__related-header {
+	margin-bottom: 28px;
+}
+
+.single-post__related-title {
+	font-family: var(--font-heading);
+	font-weight: 600;
+	font-size: clamp(28px, 3.5vw, 42px);
+	color: var(--color-text);
+	margin: 0 0 8px;
+}
+
+.single-post__related-subtitle {
+	font-family: var(--font-body);
+	font-weight: 500;
+	font-size: 18px;
+	color: var(--color-text-secondary);
+	margin: 0;
+}
+
+.single-post__related-grid {
+	grid-template-columns: repeat(2, 1fr);
+}
+
+.news-card__excerpt {
+	font-family: var(--font-body);
+	font-weight: 400;
+	font-size: 15px;
+	line-height: 1.5;
+	color: var(--color-text-secondary);
+	margin: 8px 0 0;
+}
+
+@media (max-width: 900px) {
+	.single-post__related-grid {
+		grid-template-columns: 1fr;
+	}
+}
+
+@media (max-width: 767px) {
+	.single-post__content {
+		font-size: 18px;
+	}
+}
+
+/* ==========================================================================
    Footer
    ========================================================================== */
 

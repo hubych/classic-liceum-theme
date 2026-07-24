@@ -30,7 +30,7 @@ add_action( 'wp_enqueue_scripts', function () {
 	// (плагін OMGF), щоб не тягнути запит на fonts.googleapis.com.
 	wp_enqueue_style(
 		'school-google-fonts',
-		'https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Inter:wght@400;500;600;700;800&display=swap',
+		'https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700;800&family=Inter:wght@400;500;600;700;800&display=swap',
 		array(),
 		null
 	);
