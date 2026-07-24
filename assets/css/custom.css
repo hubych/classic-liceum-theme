@@ -3,6 +3,8 @@
    ========================================================================== */
 :root {
 	--color-primary: #233B5F;      /* навігація активна, footer, акценти */
+	--color-footer-social: #394F6F; /* фон квадратних соц-кнопок у футері */
+	--color-footer-muted: #F5F5F5;  /* текст/посилання на темному фоні футера */
 	--color-text: #212121;         /* основний текст */
 	--color-text-secondary: #7A7F88; /* другорядний/сірий текст */
 	--color-border: #D2D2D2;       /* рамки, розділювачі */
@@ -928,54 +930,70 @@
 
 .site-footer {
 	background: var(--color-primary);
-	color: #fff;
-	margin-top: 24px;
+	color: var(--color-footer-muted);
+	margin-top: 48px;
 }
 
 .site-footer__inner {
 	max-width: var(--container-max-width);
 	margin: 0 auto;
-	padding: 56px var(--container-padding) 24px;
+	padding: 72px var(--container-padding) 32px;
 }
 
 .site-footer__top {
-	display: grid;
-	grid-template-columns: 1.3fr repeat(auto-fit, minmax(140px, 1fr));
-	gap: 32px;
-	padding-bottom: 32px;
+	display: flex;
+	justify-content: space-between;
+	gap: 64px;
+	padding-bottom: 40px;
 }
 
-.site-footer__brand {
+/* --- Лівий блок: бренд, слоган, соцмережі --- */
+
+.site-footer__brand-block {
 	display: flex;
 	flex-direction: column;
-	gap: 20px;
+	gap: 28px;
+	max-width: 480px;
 }
 
 .site-footer__logo {
 	display: flex;
 	align-items: center;
-	gap: 12px;
+	gap: 14px;
 	text-decoration: none;
 	color: #fff;
 }
 
 .site-footer__logo img,
 .site-footer__logo .custom-logo {
-	width: 40px;
-	height: 40px;
+	width: 56px;
+	height: 56px;
 	object-fit: contain;
 }
 
 .site-footer__logo strong {
+	display: block;
 	font-family: var(--font-heading);
-	font-weight: 600;
-	font-size: 16px;
+	font-weight: 700;
+	font-size: 22px;
+	line-height: 1.2;
 }
 
 .site-footer__logo small {
+	display: block;
+	margin-top: 4px;
 	font-family: var(--font-body);
-	font-size: 12px;
-	color: rgba(255, 255, 255, 0.7);
+	font-size: 16px;
+	color: var(--color-footer-muted);
+}
+
+.site-footer__tagline {
+	margin: 0;
+	max-width: 460px;
+	font-family: var(--font-body);
+	font-size: 16px;
+	line-height: 1.5;
+	color: var(--color-footer-muted);
 }
 
 .site-footer__social {
@@ -987,24 +1005,37 @@
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	width: 36px;
-	height: 36px;
-	border-radius: 50%;
-	background: rgba(255, 255, 255, 0.12);
+	width: 48px;
+	height: 48px;
+	border-radius: 12px;
+	background: var(--color-footer-social);
 	color: #fff;
-	transition: background 0.15s ease;
+	transition: background 0.15s ease, transform 0.15s ease;
 }
 
 .site-footer__social-link:hover {
-	background: rgba(255, 255, 255, 0.24);
+	background: #47608a;
+	transform: translateY(-2px);
+}
+
+.site-footer__social-link svg {
+	width: 22px;
+	height: 22px;
+}
+
+/* --- Праворуч: колонки меню --- */
+
+.site-footer__menus {
+	display: flex;
+	gap: 72px;
 }
 
 .footer-col__title {
-	font-family: var(--font-body);
-	font-weight: 600;
-	font-size: 15px;
+	font-family: var(--font-heading);
+	font-weight: 700;
+	font-size: 22px;
 	color: #fff;
-	margin: 0 0 16px;
+	margin: 0 0 24px;
 }
 
 .footer-col__list {
@@ -1013,43 +1044,94 @@
 	padding: 0;
 	display: flex;
 	flex-direction: column;
-	gap: 10px;
+	gap: 20px;
 }
 
 .footer-col__list a {
 	font-family: var(--font-body);
-	font-size: 14px;
-	color: rgba(255, 255, 255, 0.8);
+	font-weight: 500;
+	font-size: 17px;
+	color: var(--color-footer-muted);
 	text-decoration: none;
+	transition: color 0.15s ease;
 }
 
 .footer-col__list a:hover {
 	color: #fff;
+	text-decoration: underline;
 }
 
-.footer-col__text,
-.footer-widget {
-	font-family: var(--font-body);
-	font-size: 14px;
-	line-height: 1.7;
-	color: rgba(255, 255, 255, 0.8);
-}
+/* --- Нижній рядок: копірайт + правові посилання --- */
 
 .site-footer__bottom {
-	padding-top: 24px;
-	border-top: 1px solid rgba(255, 255, 255, 0.15);
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	gap: 24px;
+	padding-top: 28px;
+	border-top: 1px solid rgba(255, 255, 255, 0.18);
 }
 
-.site-footer__bottom p {
+.site-footer__copyright {
 	margin: 0;
 	font-family: var(--font-body);
-	font-size: 13px;
-	color: rgba(255, 255, 255, 0.6);
+	font-weight: 500;
+	font-size: 14px;
+	color: #fff;
 }
 
-@media (max-width: 700px) {
+.site-footer__legal {
+	display: flex;
+	gap: 32px;
+	flex-shrink: 0;
+}
+
+.site-footer__legal a {
+	font-family: var(--font-body);
+	font-weight: 500;
+	font-size: 14px;
+	color: #fff;
+	text-decoration: none;
+	transition: opacity 0.15s ease;
+}
+
+.site-footer__legal a:hover {
+	text-decoration: underline;
+}
+
+@media (max-width: 991px) {
 	.site-footer__top {
-		grid-template-columns: 1fr;
-		gap: 28px;
+		flex-direction: column;
+		gap: 40px;
+	}
+
+	.site-footer__menus {
+		gap: 48px;
+		flex-wrap: wrap;
+	}
+}
+
+@media (max-width: 600px) {
+	.site-footer__inner {
+		padding: 48px var(--container-padding) 28px;
+	}
+
+	.site-footer__brand-block {
+		max-width: none;
+	}
+
+	.site-footer__menus {
+		flex-direction: column;
+		gap: 32px;
+	}
+
+	.site-footer__bottom {
+		flex-direction: column;
+		align-items: flex-start;
+		gap: 16px;
+	}
+
+	.site-footer__legal {
+		gap: 24px;
 	}
 }
