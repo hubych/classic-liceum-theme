@@ -1139,6 +1139,197 @@
 }
 
 /* ==========================================================================
+   Сторінка з боковим меню розділу (page-section-sidebar.php)
+   ========================================================================== */
+
+.section-page__inner {
+	display: flex;
+	align-items: flex-start;
+	gap: 48px;
+	max-width: var(--container-max-width);
+	margin: 0 auto;
+	padding: 48px var(--container-padding) 72px;
+}
+
+.section-page__inner--no-sidebar {
+	display: block;
+}
+
+/* --- Бокове меню розділу --- */
+
+.section-page__sidebar {
+	flex: 0 0 300px;
+	position: sticky;
+	top: calc(var(--header-height) + 24px);
+}
+
+.section-nav__list {
+	list-style: none;
+	margin: 0;
+	padding: 22px;
+	display: flex;
+	flex-direction: column;
+	gap: 6px;
+	background: #fff;
+	border: 1px solid #E5E7EB;
+	border-radius: 18px;
+}
+
+.section-nav__list a {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 8px;
+	padding: 14px 18px;
+	border-radius: 8px;
+	font-family: var(--font-body);
+	font-weight: 500;
+	font-size: 17px;
+	line-height: 1.35;
+	color: var(--color-text);
+	text-decoration: none;
+	transition: background 0.15s ease, color 0.15s ease;
+}
+
+.section-nav__list a:hover {
+	background: #F2F4F7;
+}
+
+/* Активний пункт (поточна сторінка) */
+.section-nav__list .current-menu-item > a,
+.section-nav__list .current_page_item > a {
+	background: #1E3A5F;
+	color: #fff;
+	font-weight: 700;
+}
+
+/* Шеврон у пунктів, що мають підпункти */
+.section-nav__list .menu-item-has-children > a::after {
+	content: "";
+	flex-shrink: 0;
+	width: 20px;
+	height: 20px;
+	background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="%23212121" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>') center / contain no-repeat;
+}
+
+.section-nav__list .menu-item-has-children.current-menu-item > a::after {
+	filter: brightness(0) invert(1);
+}
+
+/* Підпункти */
+.section-nav__list .sub-menu {
+	list-style: none;
+	margin: 4px 0 2px;
+	padding: 0 0 0 10px;
+	display: flex;
+	flex-direction: column;
+	gap: 4px;
+}
+
+.section-nav__list .sub-menu a {
+	padding: 10px 16px;
+	font-size: 16px;
+	color: var(--color-text-secondary);
+}
+
+.section-nav__list .sub-menu a:hover {
+	color: var(--color-text);
+}
+
+/* --- Контент сторінки --- */
+
+.section-page__content {
+	flex: 1 1 auto;
+	min-width: 0;
+}
+
+.section-page__title {
+	font-family: var(--font-heading);
+	font-weight: 600;
+	font-size: clamp(30px, 4vw, 48px);
+	line-height: 1.2;
+	color: var(--color-text);
+	margin: 0 0 20px;
+}
+
+.section-page__body {
+	font-family: var(--font-body);
+	font-weight: 400;
+	font-size: clamp(17px, 1.4vw, 20px);
+	line-height: 1.8;
+	color: var(--color-text-secondary);
+}
+
+.section-page__body > * {
+	margin: 0 0 1.2em;
+}
+
+.section-page__body > *:last-child {
+	margin-bottom: 0;
+}
+
+.section-page__body h2,
+.section-page__body h3 {
+	font-family: var(--font-heading);
+	font-weight: 700;
+	line-height: 1.25;
+	color: var(--color-text);
+	margin-top: 1.4em;
+}
+
+.section-page__body h2 {
+	font-size: 30px;
+}
+
+.section-page__body h3 {
+	font-size: 24px;
+}
+
+.section-page__body img {
+	max-width: 100%;
+	height: auto;
+	border-radius: 24px;
+}
+
+.section-page__body a {
+	color: var(--color-primary);
+	text-decoration: underline;
+}
+
+.section-page__body ul,
+.section-page__body ol {
+	padding-left: 1.4em;
+}
+
+.section-page__body li {
+	margin-bottom: 0.5em;
+}
+
+.section-page__thumbnail {
+	margin: 32px 0 0;
+}
+
+.section-page__thumbnail img {
+	display: block;
+	width: 100%;
+	height: auto;
+	border-radius: 24px;
+}
+
+@media (max-width: 900px) {
+	.section-page__inner {
+		flex-direction: column;
+		gap: 28px;
+	}
+
+	.section-page__sidebar {
+		position: static;
+		flex-basis: auto;
+		width: 100%;
+	}
+}
+
+/* ==========================================================================
    Footer
    ========================================================================== */
 
