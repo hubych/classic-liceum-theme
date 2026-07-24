@@ -1360,6 +1360,391 @@ body {
 }
 
 /* ==========================================================================
+   Працівники: список підрозділу (taxonomy) і профіль (single-staff)
+   ========================================================================== */
+
+/* Посилання "Назад" над контентом розділу */
+.section-page__back {
+	display: flex;
+	align-items: center;
+	gap: 8px;
+	width: 100%;
+	max-width: var(--container-max-width);
+	margin: 0 auto;
+	padding: 28px var(--container-padding) 0;
+	font-family: var(--font-body);
+	font-weight: 500;
+	font-size: 17px;
+	color: var(--color-text);
+	text-decoration: none;
+}
+
+.section-page__back:hover {
+	color: var(--color-primary);
+}
+
+.section-page__back svg {
+	width: 22px;
+	height: 22px;
+}
+
+/* Коли є "Назад" — зменшуємо верхній відступ основного блоку */
+.section-page__back + .section-page__inner {
+	padding-top: 20px;
+}
+
+/* --- Список працівників --- */
+
+.staff-list__header {
+	margin-bottom: 32px;
+}
+
+.staff-list__subtitle {
+	margin: 8px 0 0;
+	font-family: var(--font-body);
+	font-weight: 500;
+	font-size: clamp(16px, 2vw, 22px);
+	color: var(--color-text-secondary);
+}
+
+.staff-list {
+	display: flex;
+	flex-direction: column;
+	gap: 28px;
+}
+
+.staff-list__empty {
+	font-family: var(--font-body);
+	color: var(--color-text-secondary);
+}
+
+.staff-card {
+	display: flex;
+	gap: 32px;
+	border: 1px solid #EAEAEA;
+	border-radius: 24px;
+	overflow: hidden;
+	text-decoration: none;
+	transition: box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+.staff-card:hover {
+	border-color: #D5D9E0;
+	box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+}
+
+.staff-card__photo {
+	flex: 0 0 240px;
+	align-self: stretch;
+	min-height: 240px;
+	background: #F1F3F6;
+	overflow: hidden;
+}
+
+.staff-card__photo img {
+	display: block;
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+}
+
+.staff-card__info {
+	flex: 1 1 auto;
+	min-width: 0;
+	display: flex;
+	flex-direction: column;
+	gap: 14px;
+	padding: 28px 32px 28px 0;
+}
+
+.staff-card__name {
+	margin: 0;
+	font-family: var(--font-heading);
+	font-weight: 700;
+	font-size: 24px;
+	color: var(--color-text);
+}
+
+.staff-card__position {
+	margin: 0;
+	font-family: var(--font-body);
+	font-weight: 600;
+	font-size: 18px;
+	color: var(--color-primary);
+}
+
+.staff-card__subject,
+.staff-card__exp {
+	margin: 0;
+	font-family: var(--font-body);
+	font-weight: 500;
+	font-size: 16px;
+	color: var(--color-text-secondary);
+}
+
+.staff-card__label {
+	font-weight: 600;
+}
+
+.staff-card__qual {
+	display: flex;
+	align-items: flex-start;
+	gap: 10px;
+	margin: 0;
+	font-family: var(--font-body);
+	font-weight: 500;
+	font-size: 16px;
+	color: var(--color-text-secondary);
+}
+
+.staff-card__qual-icon {
+	flex-shrink: 0;
+	display: inline-flex;
+	color: var(--color-primary);
+}
+
+.staff-card__qual-icon svg {
+	width: 24px;
+	height: 24px;
+}
+
+/* --- Профіль працівника --- */
+
+.staff-profile {
+	border: 1px solid #EAEAEA;
+	border-radius: 24px;
+	padding: 28px;
+}
+
+.staff-profile__head {
+	display: flex;
+	gap: 40px;
+	margin-bottom: 40px;
+}
+
+.staff-profile__photo {
+	flex: 0 0 300px;
+	align-self: flex-start;
+	border-radius: 16px;
+	overflow: hidden;
+	background: #F1F3F6;
+}
+
+.staff-profile__photo img {
+	display: block;
+	width: 100%;
+	height: auto;
+	aspect-ratio: 3 / 4;
+	object-fit: cover;
+}
+
+.staff-profile__intro {
+	flex: 1 1 auto;
+	min-width: 0;
+}
+
+.staff-profile__name {
+	margin: 0 0 12px;
+	font-family: var(--font-heading);
+	font-weight: 700;
+	font-size: clamp(28px, 3.5vw, 48px);
+	line-height: 1.15;
+	color: var(--color-text);
+}
+
+.staff-profile__position {
+	margin: 0 0 28px;
+	font-family: var(--font-body);
+	font-weight: 600;
+	font-size: clamp(18px, 2vw, 24px);
+	color: var(--color-primary);
+}
+
+.staff-profile__facts {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	display: flex;
+	flex-direction: column;
+	gap: 20px;
+}
+
+.staff-fact {
+	display: flex;
+	gap: 12px;
+	align-items: flex-start;
+}
+
+.staff-fact__icon {
+	flex-shrink: 0;
+	display: inline-flex;
+	color: var(--color-primary);
+}
+
+.staff-fact__icon svg {
+	width: 26px;
+	height: 26px;
+}
+
+.staff-fact__text {
+	display: flex;
+	flex-direction: column;
+	gap: 4px;
+}
+
+.staff-fact__label {
+	font-family: var(--font-body);
+	font-weight: 500;
+	font-size: 16px;
+	color: var(--color-text);
+}
+
+.staff-fact__value {
+	font-family: var(--font-body);
+	font-weight: 400;
+	font-size: 16px;
+	color: var(--color-text-secondary);
+}
+
+/* Тіло профілю (наповнюється в редакторі запису) */
+.staff-profile__body {
+	font-family: var(--font-body);
+	font-weight: 400;
+	font-size: clamp(17px, 1.4vw, 20px);
+	line-height: 1.8;
+	color: var(--color-text);
+}
+
+.staff-profile__body > * {
+	margin: 0 0 1em;
+}
+
+.staff-profile__body > *:last-child {
+	margin-bottom: 0;
+}
+
+.staff-profile__body h2,
+.staff-profile__body h3 {
+	font-family: var(--font-heading);
+	font-weight: 700;
+	line-height: 1.25;
+	color: var(--color-text);
+	margin: 1.5em 0 0.6em;
+}
+
+.staff-profile__body h2 {
+	font-size: clamp(24px, 3vw, 32px);
+}
+
+.staff-profile__body h3 {
+	font-size: 24px;
+}
+
+.staff-profile__body ul,
+.staff-profile__body ol {
+	padding-left: 1.4em;
+}
+
+.staff-profile__body li {
+	margin-bottom: 0.6em;
+}
+
+.staff-profile__body a {
+	color: var(--color-primary);
+	text-decoration: underline;
+}
+
+/* Виділений бокс (Особисті досягнення) — блок "Цитата" в редакторі */
+.staff-profile__body blockquote {
+	margin: 0 0 1em;
+	padding: 24px 28px;
+	background: #EDF1F6;
+	border: 1px solid rgba(35, 59, 95, 0.5);
+	border-radius: 18px;
+	font-weight: 600;
+	color: var(--color-text);
+}
+
+.staff-profile__body blockquote p {
+	margin: 0;
+}
+
+/* Акордеон сертифікатів — блок "Деталі" (details/summary) в редакторі */
+.staff-profile__body details {
+	margin-bottom: 16px;
+	padding: 20px 28px;
+	background: #FAF9FA;
+	border-radius: 17px;
+}
+
+.staff-profile__body summary {
+	cursor: pointer;
+	list-style: none;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 12px;
+	font-family: var(--font-body);
+	font-weight: 500;
+	font-size: clamp(18px, 2vw, 24px);
+	color: var(--color-text);
+}
+
+.staff-profile__body summary::-webkit-details-marker {
+	display: none;
+}
+
+.staff-profile__body summary::after {
+	content: "";
+	flex-shrink: 0;
+	width: 24px;
+	height: 24px;
+	background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="%23212121" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>') center / contain no-repeat;
+	transition: transform 0.2s ease;
+}
+
+.staff-profile__body details[open] summary::after {
+	transform: rotate(180deg);
+}
+
+.staff-profile__body details > *:not(summary) {
+	margin-top: 16px;
+}
+
+@media (max-width: 700px) {
+	.staff-card {
+		flex-direction: column;
+		gap: 0;
+	}
+
+	.staff-card__photo {
+		flex-basis: auto;
+		width: 100%;
+		min-height: 0;
+		aspect-ratio: 16 / 10;
+	}
+
+	.staff-card__info {
+		padding: 24px;
+	}
+
+	.staff-profile {
+		padding: 20px;
+	}
+
+	.staff-profile__head {
+		flex-direction: column;
+		gap: 24px;
+	}
+
+	.staff-profile__photo {
+		flex-basis: auto;
+		width: 100%;
+		max-width: 320px;
+	}
+}
+
+/* ==========================================================================
    Footer
    ========================================================================== */
 

@@ -112,6 +112,49 @@ add_action( 'init', function () {
 } );
 
 /**
+ * Custom Post Type "Працівник" + таксономія "Підрозділ".
+ *
+ * Кожен працівник (адміністрація, вчителі тощо) — окремий запис:
+ * ПІБ = заголовок, фото = Featured Image, решта (посада, предмет,
+ * кваліфікація, стаж) — ACF-поля (див. inc/acf-fields.php).
+ * Групуються таксономією "Підрозділ" (Адміністрація, кафедри…),
+ * а сторінка-список кожного підрозділу — шаблон taxonomy-staff_group.php.
+ */
+add_action( 'init', function () {
+	register_post_type( 'staff', array(
+		'labels' => array(
+			'name'          => __( 'Працівники', 'astra-child' ),
+			'singular_name' => __( 'Працівник', 'astra-child' ),
+			'add_new_item'  => __( 'Додати працівника', 'astra-child' ),
+			'edit_item'     => __( 'Редагувати працівника', 'astra-child' ),
+			'menu_name'     => __( 'Працівники', 'astra-child' ),
+		),
+		'public'       => true,
+		'show_in_menu' => true,
+		'menu_icon'    => 'dashicons-businessperson',
+		'supports'     => array( 'title', 'thumbnail', 'editor', 'page-attributes' ), // editor — для біографії у профілі; page-attributes — для сортування
+		'has_archive'  => false,
+		'rewrite'      => array( 'slug' => 'staff' ),
+		'show_in_rest' => true,
+	) );
+
+	register_taxonomy( 'staff_group', 'staff', array(
+		'labels' => array(
+			'name'          => __( 'Підрозділи', 'astra-child' ),
+			'singular_name' => __( 'Підрозділ', 'astra-child' ),
+			'add_new_item'  => __( 'Додати підрозділ', 'astra-child' ),
+			'edit_item'     => __( 'Редагувати підрозділ', 'astra-child' ),
+			'menu_name'     => __( 'Підрозділи', 'astra-child' ),
+		),
+		'public'            => true,
+		'hierarchical'      => true, // дозволяє кафедри як підтерми (напр. "Вчителі" → "Кафедра іноземних мов")
+		'show_admin_column' => true,
+		'show_in_rest'      => true,
+		'rewrite'           => array( 'slug' => 'pidrozdil' ),
+	) );
+} );
+
+/**
  * Widget area у футері — для контактної інформації (адреса, e-mail тощо).
  * Наповнюється через Зовнішній вигляд → Віджети → блок "Текст" або "Custom HTML".
  */
@@ -198,3 +241,40 @@ function school_transliterate_slug( $title ) {
 	return str_replace( $cyr, $lat, $title );
 }
 add_filter( 'sanitize_title', 'school_transliterate_slug', 9 );
+
+/**
+ * URL кореня розділу «Колектив» — перший пункт бокового меню розділу
+ * (локація section_kolektyv). Використовується для посилання «Назад».
+ * Якщо меню не призначено — повертає головну.
+ *
+ * @return string
+ */
+function school_section_root_url() {
+	$locations = get_nav_menu_locations();
+
+	if ( ! empty( $locations['section_kolektyv'] ) ) {
+		$items = wp_get_nav_menu_items( $locations['section_kolektyv'] );
+		if ( ! empty( $items ) && ! empty( $items[0]->url ) ) {
+			return $items[0]->url;
+		}
+	}
+
+	return home_url( '/' );
+}
+
+/**
+ * На сторінці підрозділу (архів таксономії staff_group) показуємо всіх
+ * працівників одразу й упорядковуємо за полем "Порядок" (page-attributes),
+ * а за рівного порядку — за ПІБ.
+ */
+add_action( 'pre_get_posts', function ( $query ) {
+	if ( is_admin() || ! $query->is_main_query() ) {
+		return;
+	}
+
+	if ( is_tax( 'staff_group' ) ) {
+		$query->set( 'posts_per_page', -1 );
+		$query->set( 'orderby', array( 'menu_order' => 'ASC', 'title' => 'ASC' ) );
+		$query->set( 'order', 'ASC' );
+	}
+} );

@@ -451,4 +451,76 @@ add_action( 'acf/init', function () {
 		'instruction_placement' => 'field',
 	) );
 
+	/**
+	 * Поля працівника (CPT "staff"). ПІБ — це заголовок запису,
+	 * фото — Featured Image, біографія для профілю — редактор контенту.
+	 */
+	acf_add_local_field_group( array(
+		'key'    => 'group_staff',
+		'title'  => 'Дані працівника',
+		'fields' => array(
+			array(
+				'key'          => 'field_staff_position',
+				'label'        => 'Посада',
+				'name'         => 'staff_position',
+				'type'         => 'text',
+				'instructions' => 'Напр.: Директор гімназії',
+			),
+			array(
+				'key'          => 'field_staff_subject',
+				'label'        => 'Предмет',
+				'name'         => 'staff_subject',
+				'type'         => 'text',
+				'instructions' => 'Напр.: Англійська мова (залиште порожнім, якщо не застосовно)',
+			),
+			array(
+				'key'          => 'field_staff_qualification',
+				'label'        => 'Кваліфікація / регалії',
+				'name'         => 'staff_qualification',
+				'type'         => 'textarea',
+				'rows'         => 2,
+				'instructions' => 'Напр.: Вчитель вищої категорії, вчитель-методист, голова методичної комісії…',
+			),
+			array(
+				'key'          => 'field_staff_experience',
+				'label'        => 'Педагогічний стаж',
+				'name'         => 'staff_experience',
+				'type'         => 'text',
+				'instructions' => 'Напр.: з 1996 року',
+			),
+			array(
+				'key'          => 'field_staff_education',
+				'label'        => 'Освіта',
+				'name'         => 'staff_education',
+				'type'         => 'textarea',
+				'rows'         => 2,
+				'instructions' => 'Напр.: У 1996 р. закінчила факультет іноземних мов ЛДУ ім. І. Франка (показується у профілі)',
+			),
+			array(
+				'key'          => 'field_staff_work_start',
+				'label'        => 'Робота у гімназії',
+				'name'         => 'staff_work_start',
+				'type'         => 'text',
+				'instructions' => 'Напр.: Початок роботи у Класичній гімназії з 2000 року (показується у профілі)',
+			),
+			array(
+				'key'          => 'field_staff_body_tab',
+				'label'        => 'Профіль (детально)',
+				'type'         => 'message',
+				'message'      => 'Розділи профілю (Педагогічне дослідження, Громадська діяльність, Особисті досягнення, Сертифікати) наповнюються у ГОЛОВНОМУ редакторі контенту вище: заголовки — блоком «Заголовок», списки — «Список», сертифікати по роках — блоком «Деталі» (розкривний).',
+			),
+		),
+		'location' => array(
+			array(
+				array(
+					'param'    => 'post_type',
+					'operator' => '==',
+					'value'    => 'staff',
+				),
+			),
+		),
+		'position'              => 'normal',
+		'instruction_placement' => 'field',
+	) );
+
 } );
